@@ -2,6 +2,10 @@ import React from 'react';
 import MainNavBar from '../../common/mainNavBar';
 import './landing.css';
 import BrowserBar from '../../common/browserBar';
+//image imports
+import Shoes from '../../images/shoes.jpg';
+import Plates from '../../images/plates.jpg';
+import Cheese from '../../images/cheese.jpg';
 
 const Landing = () => {
   return (
@@ -15,11 +19,17 @@ const Landing = () => {
           <BrowserBar />
         </div>
       </section>
-      <h1 className="title-2">Top rate merchants</h1>
+      <h1 className="title-2">Top Selling Items</h1>
       <section className="top-rated">
-        <div className="top-img">1</div>
-        <div className="top-img">2</div>
-        <div className="top-img">3</div>
+        <div className="top-img">
+          <img className="top-rated-image" src={Plates} alt="plates" />
+        </div>
+        <div className="top-img">
+          <img className="top-rated-image" src={Cheese} alt="cheese" />
+        </div>
+        <div className="top-img">
+          <img className="top-rated-image" src={Shoes} alt="shoes" />
+        </div>
       </section>
     </div>
   );

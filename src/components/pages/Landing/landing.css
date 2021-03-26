@@ -10,8 +10,8 @@
 
 .top-rated {
   display: flex;
-  justify-content: center; 
-  
+  justify-content: center;
+
 }
 .title-1 {
     margin-top: 5%;
@@ -21,14 +21,14 @@
 }
 .top-img {
         height: 200px;
-        background-color: rebeccapurple;
+        background-color: #9769E5;
         width: 300px;
         margin-right: 2%;
         margin-left: 2%;
-        box-shadow: 5px 10px gray;
+        box-shadow: 5px 10px lightgray;
 }
 .top-img:hover {
-    background-color: powderblue;
+    background-color: #B6ECF7;
 }
 
 .browse {
@@ -42,21 +42,26 @@
     display: flex;
     justify-content: center;
 }
-
+.top-rated-image{
+    display: block;
+    margin: 8% auto;
+    width: 250px;
+    height: 150px;
+}
 
 @media only screen and (max-width: 600px) {
     .top-rated {
         display: flex;
         flex-direction: column;
         padding: 10%;
-        margin-left: 2;
-        
+        margin-left: 15%;
+
       }
 
       .top-img {
         height: 200px;
-        background-color: rebeccapurple;
+        background-color: #9769E5;
         margin: 2%;
-        box-shadow: 5px 10px gray;
+        box-shadow: 5px 10px lightgray;
 }
 }
