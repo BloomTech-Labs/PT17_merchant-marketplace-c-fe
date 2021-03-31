@@ -167,13 +167,6 @@ const ProductInfo = ({ item }) => {
               </div>
             </div>
           </div>
-          <section className="tags-container" style={{ paddingLeft: '12rem' }}>
-            {tags.map(tag => (
-              <Tag className="tags" style={{ width: 'auto' }} key={tag.id}>
-                {tag.tag_name}
-              </Tag>
-            ))}
-          </section>
           <Button onClick={delProduct} className="deleteBtn">
             Delete Item
           </Button>
