@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons';
 import { getDSData } from '../../../api';
 
-const NewItemInfo = ({ photos, mainInfo, categoryInfo, tagInfo }) => {
+const NewItemInfo = ({ photos, mainInfo, categoryInfo }) => {
   const [sellerProfile, setSellerProfile] = useState({});
   const { authState } = useOktaAuth();
   let oktaStore = JSON.parse(localStorage['okta-token-storage']);
@@ -74,12 +74,6 @@ const NewItemInfo = ({ photos, mainInfo, categoryInfo, tagInfo }) => {
           </div>
         </div>
       </div>
-      <section className="tags-container">
-        <div className="tag-title">Tags: </div>
-        {tagInfo.map(tag => (
-          <Tag key={tag.id}>{tag.tag_name}</Tag>
-        ))}
-      </section>
       {mainInfo.published ? (
         <div className="published-container">
           <CheckCircleOutlined style={{ fontSize: '18px', color: 'green' }} />
