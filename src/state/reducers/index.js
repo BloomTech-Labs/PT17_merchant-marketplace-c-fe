@@ -6,9 +6,6 @@ import myInfoReducer from './myInfoReducer';
 import categoriesReducer from './categoriesReducer';
 import addCategoryReducer from './addCategoryReducer';
 import addProductCategoryReducer from './addProductCategoryReducer';
-import addTagReducer from './addTagReducer';
-import addProductTagReducer from './addProductTagReducer';
-import tagsReducer from './tagsReducer';
 import deleteProductReducer from './deleteProductReducer';
 import editProductReducer from './editProductReducer';
 
@@ -20,9 +17,6 @@ const reducers = combineReducers({
   categories: categoriesReducer,
   addCategory: addCategoryReducer,
   addProductCategory: addProductCategoryReducer,
-  addTag: addTagReducer,
-  addProductTag: addProductTagReducer,
-  tags: tagsReducer,
   deleteProduct: deleteProductReducer,
   editProduct: editProductReducer,
 });
