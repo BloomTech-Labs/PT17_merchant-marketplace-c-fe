@@ -100,27 +100,7 @@ function MoreInfo({ setData, setProgress, slider }) {
       >
         <section className="spec-inputs">
           {/**--------------Select Tag---------------------- */}
-          <Form.Item name="specification">
-            <Select
-              showSearch
-              style={{ width: 200 }}
-              placeholder="Select a tag"
-              optionFilterProp="children"
-              onChange={onChange}
-            >
-              {tags
-                .sort((a, b) =>
-                  a.tag_name.toLowerCase() > b.tag_name.toLowerCase() ? 1 : -1
-                )
-                .map(tag => {
-                  return (
-                    <Option value={tag.id} autoFocus={true}>
-                      {tag.tag_name}
-                    </Option>
-                  );
-                })}
-            </Select>
-          </Form.Item>
+
           {/**---------------Choosen Tags------------------- */}
           <h3>Choosen Tags:</h3>
           {selectedTag.length === 0 && (
