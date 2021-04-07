@@ -66,14 +66,6 @@ function ItemCard({ name, description, price, image, count, published }) {
               </p>
             ))}
           </div>
-          <div className="category-tag">
-            <h3>Tags: </h3>
-            {tags.map(tag => (
-              <Tag className="tags" style={{ width: 'auto' }} key={tag.id}>
-                {tag.tag_name}
-              </Tag>
-            ))}
-          </div>
         </div>
       </div>
 

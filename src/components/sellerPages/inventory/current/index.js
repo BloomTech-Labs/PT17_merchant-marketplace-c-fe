@@ -18,10 +18,8 @@ function CurrentInventory({
   inventory,
   fetchProducts,
   fetchCategories,
-  fetchTags,
   getProductsStatus,
   getCategoriesStatus,
-  getTagsStatus,
 }) {
   const [searchData, setSearchData] = useState({});
   const { authState } = useOktaAuth();
@@ -29,7 +27,6 @@ function CurrentInventory({
   useEffect(() => {
     fetchProducts(authState);
     fetchCategories(authState);
-    fetchTags(authState);
   }, []);
 
   const displayedData = useSearch(inventory, 'item_name', searchData);
@@ -53,11 +50,9 @@ const mapStateToProps = state => ({
   inventory: state.products.products,
   getProductsStatus: state.products.getProductsStatus,
   getCategoriesStatus: state.categories.getCategoriesStatus,
-  getTagsStatus: state.tags.getTagsStatus,
 });
 
 export default connect(mapStateToProps, {
   fetchProducts,
   fetchCategories,
-  fetchTags,
 })(CurrentInventory);
