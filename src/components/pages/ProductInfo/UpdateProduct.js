@@ -3,12 +3,39 @@ import React, { useEffect, useState } from 'react';
 import { Form, Input, Button, Checkbox, InputNumber, Select } from 'antd';
 import { useDispatch } from 'react-redux';
 import { editProduct } from '../../../state/actions';
+import { getDSData } from '../../../api';
+import { Tag, Skeleton } from 'antd';
+import { Widget } from '@uploadcare/react-widget';
+import { addItemImage } from '../../../state/actions/index';
+import uploadcare from 'uploadcare-widget';
+import axios from 'axios';
 
 const UpdateProduct = props => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const { authState } = useOktaAuth();
   const formRef = React.createRef();
+
+  const [loading, setLoading] = useState(false);
+  const [img, setImg] = useState('');
+  const [categories, setCategories] = useState([]);
+  const [tags, setTags] = useState([]);
+
+  function openUploadDialog(e) {
+    let dialog = uploadcare.openDialog(null, {
+      publicKey: '7f074009b333b2d5be63',
+      imagesOnly: true,
+    });
+    dialog.done(function(file, fileGroup, list) {
+      setLoading(true);
+      file.promise().done(function(fileInfo) {
+        setLoading(false);
+        setImg(fileInfo.originalUrl);
+        addItemImage(authState, props.item.id, fileInfo.originalUrl);
+        console.log('fileinfo: ', fileInfo);
+      });
+    });
+  }
 
   const onFinish = values => {
     dispatch(editProduct(values, authState));
@@ -22,8 +49,26 @@ const UpdateProduct = props => {
     formRef.current.resetFields();
   };
 
+  const imgGet = id => {
+    setLoading(true);
+    getDSData(`${process.env.REACT_APP_API_URI}photo/${props.id}`, authState)
+      .then(res => {
+        setLoading(false);
+        setImg(res[0]['url']);
+      })
+      .catch(err => {
+        console.log('Img get fail in ItemCard');
+      });
+  };
+  useEffect(() => {
+    imgGet(props.image);
+  }, []);
+
   return (
     <div className="myProductContents">
+      <img src={img} className="editImage" alt="product for sell" />
+      <button onClick={openUploadDialog}> Replace image </button>
+
       <h1>Update Product</h1>
       <Form
         ref={formRef}
@@ -31,6 +76,7 @@ const UpdateProduct = props => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         initialValues={{
+          image: props.item.image,
           item_name: props.item.item_name,
           description: props.item.description,
           price_in_cents: props.item.price_in_cents,
