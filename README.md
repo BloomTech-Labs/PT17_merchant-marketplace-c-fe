@@ -1,6 +1,6 @@
 # merchant-marketplace
 
-[![Code Quality](https://www.code-inspector.com/project/21036/status/svg)](https://www.code-inspector.com/project/21036/score/svg)
+[![Code Quality](https://www.code-inspector.com/project/21036/status/svg)](https://frontend.code-inspector.com/public/project/21036/PT17_merchant-marketplace-c-fe/dashboard)
 
 🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your first Pull-Request is merged. This is intended to be a guideline. Feel free to add your own flare to it.
 
