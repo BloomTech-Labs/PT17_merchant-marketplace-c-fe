@@ -25,6 +25,8 @@ function SearchResults({ data, filter }) {
               count={item.quantity_available}
               image={item.id}
               published={item.published}
+              pickup={item.pickup}
+              delivery={item.delivery}
             />
           </Suspense>
           {/**---------------------------------------- */}

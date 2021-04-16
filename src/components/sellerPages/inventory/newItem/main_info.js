@@ -65,6 +65,25 @@ function NewItem({ setProgress, slider, setData }) {
             onChange={onFinish}
           />
         </Form.Item>
+
+        {/*===============Pickup & Deliver================= */}
+        <Form.Item
+          label="Pickup"
+          name="pickup"
+          valuePropName="checked"
+          initialValue={false}
+        >
+          <Checkbox></Checkbox>
+        </Form.Item>
+
+        <Form.Item
+          label="Delivery"
+          name="delivery"
+          valuePropName="checked"
+          initialValue={false}
+        >
+          <Checkbox></Checkbox>
+        </Form.Item>
         {/*===============Published================= */}
         <Form.Item
           label="Published"

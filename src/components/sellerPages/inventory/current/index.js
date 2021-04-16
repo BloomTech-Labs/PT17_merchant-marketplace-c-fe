@@ -13,21 +13,14 @@ import NavBar from '../../../common/navBar';
 import SearchResults from './searchResults';
 import useSearch from '../../../common/customHooks/useSearch';
 
-function CurrentInventory({
-  state,
-  inventory,
-  fetchProducts,
-  fetchCategories,
-  getProductsStatus,
-  getCategoriesStatus,
-}) {
+function CurrentInventory({ inventory, fetchProducts, fetchCategories }) {
   const [searchData, setSearchData] = useState({});
   const { authState } = useOktaAuth();
 
   useEffect(() => {
     fetchProducts(authState);
     fetchCategories(authState);
-  }, []);
+  }, [authState]);
 
   const displayedData = useSearch(inventory, 'item_name', searchData);
 
