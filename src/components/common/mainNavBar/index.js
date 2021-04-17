@@ -19,7 +19,7 @@ function MainNavBar() {
           <NavLink
             className="link"
             activeStyle={{ color: 'white' }}
-            to="/myprofile"
+            to="/myprofile/inventory"
           >
             My Profile
           </NavLink>

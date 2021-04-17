@@ -60,7 +60,6 @@ function App() {
         <Route path="/implicit/callback" component={LoginCallback} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <Route exact path="/" component={Landing} />
-        <SecureRoute exact path="/myprofile" component={SellerProfile} />
         <SecureRoute
           exact
           path="/myprofile/inventory"
