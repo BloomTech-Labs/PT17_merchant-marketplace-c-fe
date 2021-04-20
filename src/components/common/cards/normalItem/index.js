@@ -2,7 +2,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import React, { useEffect, useState } from 'react';
 import { getDSData } from '../../../../api';
 import './itemCardStyles.css';
-import { Tag, Skeleton } from 'antd';
+import { Skeleton } from 'antd';
 import { MinusCircleOutlined, CheckCircleOutlined } from '@ant-design/icons';
 
 function ItemCard({
@@ -18,7 +18,7 @@ function ItemCard({
   const [img, setImg] = useState('');
   const { authState } = useOktaAuth();
   const [categories, setCategories] = useState([]);
-  const [tags, setTags] = useState([]);
+  const [setTags] = useState([]);
   const [loading, setLoading] = useState(false);
   let dollars = price / 100;
 

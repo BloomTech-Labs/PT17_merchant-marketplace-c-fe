@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { Form, Input, Cascader, InputNumber, Checkbox, Select } from 'antd';
+import React from 'react';
+import { Form, Input, InputNumber, Checkbox } from 'antd';
 import FormButton from '../../../common/FormButton/FormButton';
 import '../inventoryStyles.css';
-const { Option } = Select;
 
 function NewItem({ setProgress, slider, setData }) {
   const [form] = Form.useForm();

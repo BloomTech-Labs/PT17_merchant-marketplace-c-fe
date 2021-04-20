@@ -1,8 +1,4 @@
-import React from 'react';
 import {
-  sleep,
-  getExampleData,
-  getProfileData,
   putData,
   getProfileIdData,
   getDSData,

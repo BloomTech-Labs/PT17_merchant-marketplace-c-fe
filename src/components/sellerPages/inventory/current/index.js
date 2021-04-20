@@ -2,11 +2,7 @@ import { useOktaAuth } from '@okta/okta-react/src/OktaContext';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'antd';
 import { connect } from 'react-redux';
-import {
-  fetchProducts,
-  fetchCategories,
-  fetchTags,
-} from '../../../../state/actions';
+import { fetchProducts, fetchCategories } from '../../../../state/actions';
 import { Link } from 'react-router-dom';
 
 import NavBar from '../../../common/navBar';

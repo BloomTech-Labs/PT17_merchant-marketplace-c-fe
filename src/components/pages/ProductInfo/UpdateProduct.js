@@ -1,6 +1,6 @@
 import { useOktaAuth } from '@okta/okta-react';
 import React from 'react';
-import { Form, Input, Button, Checkbox, InputNumber, Select } from 'antd';
+import { Form, Input, Button, Checkbox, InputNumber } from 'antd';
 import { useDispatch } from 'react-redux';
 import { editProduct } from '../../../state/actions';
 
