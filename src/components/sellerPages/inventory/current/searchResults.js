@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import LoadingProductCard from '../../../common/cards/normalItem/LoadingProductCard';
 import useSearch from '../../../common/customHooks/useSearch';
 import { NavLink } from 'react-router-dom';
+import { Row } from 'antd';
 
 const LazyItemCard = lazy(() => import('../../../common/cards/normalItem'));
 
@@ -16,16 +17,18 @@ function SearchResults({ data, filter }) {
         >
           {/**---------------------------------------- */}
           <Suspense fallback={<LoadingProductCard />}>
-            <LazyItemCard
-              id={item.id}
-              key={item.id}
-              name={item.item_name}
-              price={item.price_in_cents}
-              description={item.description}
-              count={item.quantity_available}
-              image={item.id}
-              published={item.published}
-            />
+            <Row gutter={[8, 8]}>
+              <LazyItemCard
+                id={item.id}
+                key={item.id}
+                name={item.item_name}
+                price={item.price_in_cents}
+                description={item.description}
+                count={item.quantity_available}
+                image={item.id}
+                published={item.published}
+              />
+            </Row>
           </Suspense>
           {/**---------------------------------------- */}
         </NavLink>

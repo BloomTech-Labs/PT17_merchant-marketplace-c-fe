@@ -2,7 +2,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import React, { useEffect, useState } from 'react';
 import { getDSData } from '../../../../api';
 import './itemCardStyles.css';
-import { Tag, Skeleton } from 'antd';
+import { Tag, Skeleton, Col } from 'antd';
 import { MinusCircleOutlined, CheckCircleOutlined } from '@ant-design/icons';
 
 function ItemCard({ name, description, price, image, count, published }) {
@@ -45,31 +45,31 @@ function ItemCard({ name, description, price, image, count, published }) {
   }, []);
 
   return (
-    <div className="cardContainer">
+    <Col span={3} className="cardContainer">
       {loading ? (
         <Skeleton.Image active className="cardImage" />
       ) : (
         <img src={img} className="cardImage" alt="product for sell" />
       )}
 
-      <div className="cardDesc">
+      <Col span={3} className="cardDesc">
         <h2 className="descText">{name}</h2>
         <p className="descText" activeStyle={{ color: 'black' }}>
           {description}
         </p>
-        <div className="categories-tags">
-          <div className="category-tag ">
+        <Col span={3} className="categories-tags">
+          <Col span={3} className="category-tag ">
             <h3>Categories: </h3>
             {categories.map(category => (
               <p className="category" key={category.id}>
                 {category.category_name}
               </p>
             ))}
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Col>
+      </Col>
 
-      <div>
+      <Col span={3}>
         <h2 className="cardPrice">${dollars}</h2>
         {count !== 0 ? (
           <h2 style={{ color: 'green' }}>QTY: {count}</h2>
@@ -81,8 +81,8 @@ function ItemCard({ name, description, price, image, count, published }) {
         ) : (
           <MinusCircleOutlined style={{ fontSize: '20px', color: 'red' }} />
         )}
-      </div>
-    </div>
+      </Col>
+    </Col>
   );
 }
 
