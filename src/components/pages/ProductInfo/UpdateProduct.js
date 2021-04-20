@@ -80,7 +80,7 @@ const UpdateProduct = props => {
         <Form.Item label="Pickup" name="pickup" valuePropName="checked">
           <Checkbox></Checkbox>
         </Form.Item>
-        <Form.Item label="Delivery" name="delivered" valuePropName="checked">
+        <Form.Item label="Delivery" name="delivery" valuePropName="checked">
           <Checkbox></Checkbox>
         </Form.Item>
         {/*===================Published===================== */}
