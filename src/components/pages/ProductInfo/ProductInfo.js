@@ -2,7 +2,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import React, { useEffect, useState } from 'react';
 import { getDSData } from '../../../api';
 import ProductCarousel from '../ProductPage/ProductCarousel';
-import { Rate, Avatar, Tag, Button } from 'antd';
+import { Rate, Avatar, Button } from 'antd';
 import {
   GlobalOutlined,
   MinusCircleOutlined,
@@ -17,7 +17,6 @@ const ProductInfo = ({ item }) => {
   const [img, setImg] = useState('');
   const [sellerProfile, setSellerProfile] = useState({});
   const [categories, setCategories] = useState([]);
-  const [tags, setTags] = useState([]);
   const { authState } = useOktaAuth();
   const [updateToggle, setUpdateToggle] = useState(false);
   const editProductState = useSelector(
@@ -66,7 +65,6 @@ const ProductInfo = ({ item }) => {
       setCategories,
       'Category get fail in ItemCard'
     );
-    getElement(item.id, 'tag/item/', setTags, 'Tag get fail in ItemCard');
   }, []);
 
   //-------------Edit Item---------------
@@ -167,13 +165,6 @@ const ProductInfo = ({ item }) => {
               </div>
             </div>
           </div>
-          <section className="tags-container" style={{ paddingLeft: '12rem' }}>
-            {tags.map(tag => (
-              <Tag className="tags" style={{ width: 'auto' }} key={tag.id}>
-                {tag.tag_name}
-              </Tag>
-            ))}
-          </section>
           <Button onClick={delProduct} className="deleteBtn">
             Delete Item
           </Button>

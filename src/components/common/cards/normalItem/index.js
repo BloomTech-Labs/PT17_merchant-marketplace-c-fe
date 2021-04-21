@@ -9,7 +9,6 @@ function ItemCard({ name, description, price, image, count, published }) {
   const [img, setImg] = useState('');
   const { authState } = useOktaAuth();
   const [categories, setCategories] = useState([]);
-  const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(false);
   let dollars = price / 100;
 
@@ -41,7 +40,6 @@ function ItemCard({ name, description, price, image, count, published }) {
       setCategories,
       'Category get fail in ItemCard'
     );
-    getElement(image, 'tag/item/', setTags, 'Tag get fail in ItemCard');
   }, []);
 
   return (
@@ -54,25 +52,18 @@ function ItemCard({ name, description, price, image, count, published }) {
 
       <div className="cardDesc">
         <h2 className="descText">{name}</h2>
-        <p className="descText" activeStyle={{ color: 'black' }}>
+        <p className="descText" style={{ color: 'black' }}>
           {description}
         </p>
         <div className="categories-tags">
           <div className="category-tag ">
             <h3>Categories: </h3>
-            {categories.map(category => (
-              <p className="category" key={category.id}>
-                {category.category_name}
-              </p>
-            ))}
-          </div>
-          <div className="category-tag">
-            <h3>Tags: </h3>
-            {tags.map(tag => (
-              <Tag className="tags" style={{ width: 'auto' }} key={tag.id}>
-                {tag.tag_name}
-              </Tag>
-            ))}
+            {categories.length &&
+              categories.map(category => (
+                <p className="category" key={category.id}>
+                  {category.category_name}
+                </p>
+              ))}
           </div>
         </div>
       </div>

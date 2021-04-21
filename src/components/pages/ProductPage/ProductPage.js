@@ -1,25 +1,30 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import NavBar from '../../common/navBar/index';
 import ProductInfo from '../ProductInfo/ProductInfo';
-import { connect } from 'react-redux';
 
 const ProductPage = props => {
-  const paramItemId = props.match.params.id;
+  const [item, setItem] = useState();
 
-  const item = props.inventory.find(item => {
-    return item.id === Number(paramItemId);
-  });
+  useEffect(() => {
+    const url = `${process.env.REACT_APP_API_URI}item/${props.match.params.id}`;
+    axios
+      .get(url)
+      .then(res => {
+        console.log('results:');
+        setItem(res.data[0]);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, []);
+
   return (
     <div>
       <NavBar />
-      <ProductInfo item={item} />
+      {item && <ProductInfo item={item} />}
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  inventory: state.products.products,
-  getProductsStatus: state.products.getProductsStatus,
-});
-
-export default connect(mapStateToProps, {})(ProductPage);
+export default ProductPage;
