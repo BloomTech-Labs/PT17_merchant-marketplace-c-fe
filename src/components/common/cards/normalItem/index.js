@@ -24,7 +24,10 @@ function ItemCard({
   //<----------------Get Element---------------->
   const getElement = (id, url, setState, errMessage) => {
     getDSData(`${process.env.REACT_APP_API_URI}${url}${id}`, authState)
-      .then(res => setState(res))
+      .then(res => {
+        setState(res);
+        console.log('this is the issue', res);
+      })
       .catch(err => {
         console.log(errMessage);
       });
@@ -89,11 +92,12 @@ function ItemCard({
           <div className="categories-tags">
             <div className="category-tag ">
               <h3>Categories: </h3>
-              {categories.map(category => (
-                <p className="category" key={category.id}>
-                  {category.category_name}
-                </p>
-              ))}
+              {categories?.length &&
+                categories.map(category => (
+                  <p className="category" key={category.id}>
+                    {category.category_name}
+                  </p>
+                ))}
             </div>
           </div>
         </div>
