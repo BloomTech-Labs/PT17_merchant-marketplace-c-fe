@@ -1,8 +1,4 @@
-import React from 'react';
 import {
-  sleep,
-  getExampleData,
-  getProfileData,
   putData,
   getProfileIdData,
   getDSData,
@@ -18,10 +14,6 @@ export const FETCH_CATEGORIES_START = 'FETCH_CATEGORIES_START';
 export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS';
 export const FETCH_CATEGORIES_ERROR = 'FETCH_CATEGORIES_ERROR';
 
-export const FETCH_TAGS_START = 'FETCH_TAGS_START';
-export const FETCH_TAGS_SUCCESS = 'FETCH_TAGS_SUCCESS';
-export const FETCH_TAGS_ERROR = 'FETCH_TAGS_ERROR';
-
 export const ADD_PRODUCT_START = 'ADD_PRODUCT_START';
 export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS';
 export const ADD_PRODUCT_ERROR = 'ADD_PRODUCT_ERROR';
@@ -29,10 +21,6 @@ export const ADD_PRODUCT_ERROR = 'ADD_PRODUCT_ERROR';
 export const ADD_CATEGORY_START = 'ADD_CATEGORY_START';
 export const ADD_CATEGORY_SUCCESS = 'ADD_CATEGORY_SUCCESS';
 export const ADD_CATEGORY_ERROR = 'ADD_CATEGORY_ERROR';
-
-export const ADD_TAG_START = 'ADD_TAG_START';
-export const ADD_TAG_SUCCESS = 'ADD_TAG_SUCCESS';
-export const ADD_TAG_ERROR = 'ADD_TAG_ERROR';
 
 export const ADD_PRODUCT_CATEGORY_START = 'ADD_PRODUCT_CATEGORY_START';
 export const ADD_PRODUCT_CATEGORY_SUCCESS = 'ADD_PRODUCT_CATEGORY_SUCCESS';
@@ -66,7 +54,7 @@ export const DELETE_PRODUCT_ERROR = 'DELETE_PRODUCT_ERROR';
 //<------------fetchProducts--------------->
 export const fetchProducts = authState => dispatch => {
   let oktaStore = JSON.parse(localStorage['okta-token-storage']);
-  let oktaId = oktaStore.idToken.claims.sub;
+  let oktaId = oktaStore?.idToken.claims.sub;
   dispatch({ type: FETCH_PRODUCTS_START });
   getDSData(
     `${process.env.REACT_APP_API_URI}items/profile/${oktaId}`,
@@ -89,18 +77,6 @@ export const fetchCategories = authState => dispatch => {
     })
     .catch(err => {
       dispatch({ type: FETCH_CATEGORIES_ERROR, payload: err });
-    });
-};
-
-//<------------fetchTags--------------->
-export const fetchTags = authState => dispatch => {
-  dispatch({ type: FETCH_TAGS_START });
-  getDSData(`${process.env.REACT_APP_API_URI}tag`, authState)
-    .then(response => {
-      dispatch({ type: FETCH_TAGS_SUCCESS, payload: response });
-    })
-    .catch(err => {
-      dispatch({ type: FETCH_TAGS_ERROR, payload: err });
     });
 };
 
@@ -160,23 +136,6 @@ export const addCategory = (newCategory, authState) => dispatch => {
     });
 };
 
-//<---------------addTag---------------------->
-export const addTag = (newTag, authState) => dispatch => {
-  dispatch({ type: ADD_TAG_START });
-  postData(
-    process.env.REACT_APP_API_URI + 'tags/',
-    {
-      tag_name: newTag,
-    },
-    authState
-  )
-    .then(response => {
-      dispatch({ type: ADD_TAG_SUCCESS, payload: response });
-    })
-    .catch(err => {
-      dispatch({ type: ADD_TAG_ERROR, payload: err });
-    });
-};
 //<---------------addProductCategory---------------------->
 export const addProductCategory = (
   authState,
@@ -195,22 +154,6 @@ export const addProductCategory = (
     })
     .catch(err => {
       dispatch({ type: ADD_PRODUCT_CATEGORY_ERROR, payload: err });
-    });
-};
-
-//<---------------addProductTag---------------------->
-export const addProductTag = (authState, productID, tagID) => dispatch => {
-  dispatch({ type: ADD_PRODUCT_TAG_START });
-  postData(
-    process.env.REACT_APP_API_URI + `item/${productID}/tag/${tagID}`,
-    { tag_id: tagID, item_id: productID },
-    authState
-  )
-    .then(response => {
-      dispatch({ type: ADD_PRODUCT_TAG_SUCCESS, payload: response });
-    })
-    .catch(err => {
-      dispatch({ type: ADD_PRODUCT_TAG_ERROR, payload: err });
     });
 };
 

@@ -1,6 +1,6 @@
 import { useOktaAuth } from '@okta/okta-react';
 import React, { useState, useEffect } from 'react';
-import { Rate, Avatar, Tag } from 'antd';
+import { Avatar } from 'antd';
 import {
   GlobalOutlined,
   MinusCircleOutlined,
@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons';
 import { getDSData } from '../../../api';
 
-const NewItemInfo = ({ photos, mainInfo, categoryInfo, tagInfo }) => {
+const NewItemInfo = ({ photos, mainInfo, categoryInfo }) => {
   const [sellerProfile, setSellerProfile] = useState({});
   const { authState } = useOktaAuth();
   let oktaStore = JSON.parse(localStorage['okta-token-storage']);
@@ -24,13 +24,14 @@ const NewItemInfo = ({ photos, mainInfo, categoryInfo, tagInfo }) => {
   };
   useEffect(() => {
     getSellerProfile(seller_profile_id);
+    // eslint-disable-next-line
   }, []);
   let dollars = mainInfo.price_in_cents / 100;
   return (
     <div className="product-page">
       <div className="product-container-newitem">
         <div>
-          <img src={photos} />
+          <img src={photos} alt="products" />
         </div>
 
         <div className="newitem">
@@ -74,12 +75,6 @@ const NewItemInfo = ({ photos, mainInfo, categoryInfo, tagInfo }) => {
           </div>
         </div>
       </div>
-      <section className="tags-container">
-        <div className="tag-title">Tags: </div>
-        {tagInfo.map(tag => (
-          <Tag key={tag.id}>{tag.tag_name}</Tag>
-        ))}
-      </section>
       {mainInfo.published ? (
         <div className="published-container">
           <CheckCircleOutlined style={{ fontSize: '18px', color: 'green' }} />

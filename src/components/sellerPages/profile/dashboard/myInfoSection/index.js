@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import NavBar from '../../../../common/navBar';
 import { connect } from 'react-redux';
@@ -11,6 +11,7 @@ function MyInfo(props) {
 
   useEffect(() => {
     props.fetchMyInfo(authState);
+    // eslint-disable-next-line
   }, []);
 
   function clicked(event) {

@@ -6,6 +6,7 @@ import axios from 'axios';
 import ItemCard from '../../common/cards/normalItem';
 import { NavLink } from 'react-router-dom';
 
+
 const Landing = () => {
   const [searchTerm, setSearchTerm] = useState();
   const [searchResults, setSearchResults] = useState([]);
@@ -61,6 +62,7 @@ const Landing = () => {
         <div className="top-img">2</div>
         <div className="top-img">3</div>
       </section> */}
+
     </div>
   );
 };
