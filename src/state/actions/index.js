@@ -1,8 +1,4 @@
-import React from 'react';
 import {
-  sleep,
-  getExampleData,
-  getProfileData,
   putData,
   getProfileIdData,
   getDSData,
@@ -58,7 +54,7 @@ export const DELETE_PRODUCT_ERROR = 'DELETE_PRODUCT_ERROR';
 //<------------fetchProducts--------------->
 export const fetchProducts = authState => dispatch => {
   let oktaStore = JSON.parse(localStorage['okta-token-storage']);
-  let oktaId = oktaStore.idToken.claims.sub;
+  let oktaId = oktaStore?.idToken.claims.sub;
   dispatch({ type: FETCH_PRODUCTS_START });
   getDSData(
     `${process.env.REACT_APP_API_URI}items/profile/${oktaId}`,

@@ -1,6 +1,6 @@
 import { useOktaAuth } from '@okta/okta-react';
-import React, { useEffect, useState } from 'react';
-import { Form, Input, Button, Checkbox, InputNumber, Select } from 'antd';
+import React from 'react';
+import { Form, Input, Button, Checkbox, InputNumber } from 'antd';
 import { useDispatch } from 'react-redux';
 import { editProduct } from '../../../state/actions';
 
@@ -37,6 +37,8 @@ const UpdateProduct = props => {
           quantity_available: props.item.quantity_available,
           published: props.item.published,
           id: props.item.id,
+          pickup: props.item.pickup,
+          delivery: props.item.delivery,
         }}
       >
         {/*======================item_name========================== */}
@@ -73,6 +75,13 @@ const UpdateProduct = props => {
         {/*======================Quantity Available========================== */}
         <Form.Item name="quantity_available" label="Quantity" required>
           <InputNumber placeholder="quantity_available" min={0} />
+        </Form.Item>
+        {/*===================Pickup Delivery===================== */}
+        <Form.Item label="Pickup" name="pickup" valuePropName="checked">
+          <Checkbox></Checkbox>
+        </Form.Item>
+        <Form.Item label="Delivery" name="delivery" valuePropName="checked">
+          <Checkbox></Checkbox>
         </Form.Item>
         {/*===================Published===================== */}
         <Form.Item

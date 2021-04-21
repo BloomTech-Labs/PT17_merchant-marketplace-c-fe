@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import NavBar from '../../../../common/navBar';
 import { connect } from 'react-redux';

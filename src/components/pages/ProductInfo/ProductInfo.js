@@ -140,6 +140,17 @@ const ProductInfo = ({ item }) => {
               <p>Location: {sellerProfile.physical_address}</p>
               <section>
                 <p>{updatedProduct.description}</p>
+                {updatedProduct.pickup !== false ? (
+                  <p style={{ color: 'green' }}>Available for Pickup</p>
+                ) : (
+                  <p style={{ color: 'red' }}></p>
+                )}
+
+                {updatedProduct.delivery !== false ? (
+                  <p style={{ color: 'green' }}>Available for Delivery</p>
+                ) : (
+                  <p style={{ color: 'red' }}></p>
+                )}
                 {updatedProduct.quantity_available !== 0 ? (
                   <h2 style={{ color: 'green' }}>
                     QTY: {updatedProduct.quantity_available}
