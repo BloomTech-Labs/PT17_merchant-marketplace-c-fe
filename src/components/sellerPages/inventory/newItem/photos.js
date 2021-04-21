@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import FormButton from '../../../common/FormButton/FormButton';
 import uploadcare from 'uploadcare-widget';
 import { addItemImage } from '../../../../state/actions';
-import { useOktaAuth } from '@okta/okta-react';
 import { Spin } from 'antd';
 
 function AddPhotos({ setProgress, slider, setPhotos, photos }) {
-  const { authState } = useOktaAuth();
   const [loading, setLoading] = useState(false);
 
   function openUploadDialog(e) {

@@ -24,6 +24,7 @@ const NewItemInfo = ({ photos, mainInfo, categoryInfo }) => {
   };
   useEffect(() => {
     getSellerProfile(seller_profile_id);
+    // eslint-disable-next-line
   }, []);
   let dollars = mainInfo.price_in_cents / 100;
   return (

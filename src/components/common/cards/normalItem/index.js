@@ -2,7 +2,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import React, { useEffect, useState } from 'react';
 import { getDSData } from '../../../../api';
 import './itemCardStyles.css';
-import { Skeleton } from 'antd';
+import { Skeleton, Col } from 'antd';
 import { MinusCircleOutlined, CheckCircleOutlined } from '@ant-design/icons';
 
 function ItemCard({
@@ -51,47 +51,57 @@ function ItemCard({
       'Category get fail in ItemCard'
     );
     getElement(image, 'tag/item/', setTags, 'Tag get fail in ItemCard');
+    // eslint-disable-next-line
   }, []);
 
   return (
-    <div className="cardContainer">
-      {loading ? (
-        <Skeleton.Image active className="cardImage" />
-      ) : (
-        <img src={img} className="cardImage" alt="product for sell" />
-      )}
-      <div className="cardInfo">
+    <Col span={30}>
+      <div className="cardContainer">
+        <div className="img-frame">
+          {loading ? (
+            <Skeleton.Image active className="cardImage" />
+          ) : (
+            <img src={img} className="cardImage" alt="product for sell" />
+          )}
+        </div>
+        <div className="cardInfo">
+          <div className="cardDesc">
+            <h2 className="descText">{name}</h2>
+            <p className="descText" activeStyle={{ color: 'black' }}>
+              {description}
+            </p>
+
+            {pickup !== false ? (
+              <p style={{ color: 'green' }}>Available for Pickup</p>
+            ) : (
+              <p style={{ color: 'red' }}></p>
+            )}
+
+            {delivery !== false ? (
+              <p style={{ color: 'green' }}>Available for Delivery</p>
+            ) : (
+              <p style={{ color: 'red' }}></p>
+            )}
+          </div>
+        </div>
         <div className="cardDesc">
           <h2 className="descText">{name}</h2>
           <p className="descText" activeStyle={{ color: 'black' }}>
             {description}
           </p>
-
-          {pickup !== false ? (
-            <p style={{ color: 'green' }}>Available for Pickup</p>
-          ) : (
-            <p style={{ color: 'red' }}></p>
-          )}
-
-          {delivery !== false ? (
-            <p style={{ color: 'green' }}>Available for Delivery</p>
-          ) : (
-            <p style={{ color: 'red' }}></p>
-          )}
-        </div>
-
-        <div className="categories-tags">
-          <div className="category-tag ">
-            <h3>Categories: </h3>
-            {categories.map(category => (
-              <p className="category" key={category.id}>
-                {category.category_name}
-              </p>
-            ))}
+          <div className="categories-tags">
+            <div className="category-tag ">
+              <h3>Categories: </h3>
+              {categories.map(category => (
+                <p className="category" key={category.id}>
+                  {category.category_name}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="price_published">
+        <div>
           <h2 className="cardPrice">${dollars}</h2>
           {count !== 0 ? (
             <h2 style={{ color: 'green' }}>QTY: {count}</h2>
@@ -105,7 +115,7 @@ function ItemCard({
           )}
         </div>
       </div>
-    </div>
+    </Col>
   );
 }
 
