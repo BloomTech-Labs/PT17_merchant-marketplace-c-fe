@@ -1,67 +1,71 @@
-.menu{
-    width: 200px;
-    padding-top: 10px;
+@import url('https://fonts.googleapis.com/css2?family=Cuprum&display=swap');
+
+* {
+  font-family: 'Cuprum', sans-serif;
+}
+
+.menu {
+  width: 200px;
+  padding-top: 10px;
 }
 .link {
-    margin-left: 1%;
-    margin-right: 1%;
-    text-decoration: none;
+  margin-left: 1%;
+  margin-right: 1%;
+  text-decoration: none;
 }
 
 .top-rated {
   display: flex;
   justify-content: center;
-
 }
 .title-1 {
-    margin-top: 5%;
+  margin-top: 5%;
 }
 .title-2 {
-    margin-top: 5%;
+  margin-top: 5%;
 }
 .top-img {
-        height: 200px;
-        background-color: #9769E5;
-        width: 300px;
-        margin-right: 2%;
-        margin-left: 2%;
-        box-shadow: 5px 10px lightgray;
+  height: 200px;
+  background-color: #9769e5;
+  width: 300px;
+  margin-right: 2%;
+  margin-left: 2%;
+  box-shadow: 5px 10px lightgray;
 }
 .top-img:hover {
-    background-color: #B6ECF7;
+  background-color: #b6ecf7;
 }
 
 .browse {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 300px;
 }
 
 .browse-bar {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
-.top-rated-image{
-    display: block;
-    margin: 8% auto;
-    width: 250px;
-    height: 150px;
+.top-rated-image {
+  display: block;
+  margin: 8% auto;
+  width: 250px;
+  height: 150px;
 }
 
 @media only screen and (max-width: 600px) {
-    .top-rated {
-        display: flex;
-        flex-direction: column;
-        padding: 10%;
-        margin-left: 15%;
+  .top-rated {
+    display: flex;
+    flex-direction: column;
+    padding: 10%;
+    margin-left: 15%;
+  }
 
-      }
-
-      .top-img {
-        height: 200px;
-        background-color: #9769E5;
-        margin: 2%;
-        box-shadow: 5px 10px lightgray;
-}
+  .top-img {
+    height: 200px;
+    background-color: #9769e5;
+    margin: 2%;
+    box-shadow: 5px 10px lightgray;
+  }
 }
