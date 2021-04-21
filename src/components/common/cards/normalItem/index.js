@@ -1,5 +1,5 @@
 import { useOktaAuth } from '@okta/okta-react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { getDSData } from '../../../../api';
 import './itemCardStyles.css';
 import { Skeleton, Col } from 'antd';
@@ -22,28 +22,35 @@ function ItemCard({
   let dollars = price / 100;
 
   //<----------------Get Element---------------->
-  const getElement = (id, url, setState, errMessage) => {
-    getDSData(`${process.env.REACT_APP_API_URI}${url}${id}`, authState)
-      .then(res => {
-        setState(res);
-        console.log('this is the issue', res);
-      })
-      .catch(err => {
-        console.log(errMessage);
-      });
-  };
+  const getElement = useCallback(
+    (id, url, setState, errMessage) => {
+      getDSData(`${process.env.REACT_APP_API_URI}${url}${id}`, authState)
+        .then(res => {
+          setState(res);
+        })
+        .catch(err => {
+          console.log(errMessage, { err });
+        });
+    },
+    [authState]
+  );
+
   //<----------------Get Image---------------->
-  const imgGet = id => {
-    setLoading(true);
-    getDSData(`${process.env.REACT_APP_API_URI}photo/${id}`, authState)
-      .then(res => {
-        setLoading(false);
-        setImg(res[0]['url']);
-      })
-      .catch(err => {
-        console.log('Img get fail in ItemCard');
-      });
-  };
+  const imgGet = useCallback(
+    id => {
+      setLoading(true);
+      getDSData(`${process.env.REACT_APP_API_URI}photo/${id}`, authState)
+        .then(res => {
+          setLoading(false);
+          setImg(res[0]['url']);
+        })
+        .catch(err => {
+          console.log('Img get fail in ItemCard', { err });
+        });
+    },
+    [authState]
+  );
+
   useEffect(() => {
     imgGet(image);
     getElement(
@@ -52,7 +59,7 @@ function ItemCard({
       setCategories,
       'Category get fail in ItemCard'
     );
-  }, []);
+  }, [imgGet, getElement, image]);
 
   return (
     <Col span={30}>
