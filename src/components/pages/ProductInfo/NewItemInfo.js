@@ -1,6 +1,6 @@
 import { useOktaAuth } from '@okta/okta-react';
 import React, { useState, useEffect } from 'react';
-import { Rate, Avatar, Tag } from 'antd';
+import { Avatar } from 'antd';
 import {
   GlobalOutlined,
   MinusCircleOutlined,
@@ -30,7 +30,7 @@ const NewItemInfo = ({ photos, mainInfo, categoryInfo }) => {
     <div className="product-page">
       <div className="product-container-newitem">
         <div>
-          <img src={photos} />
+          <img src={photos} alt="products" />
         </div>
 
         <div className="newitem">

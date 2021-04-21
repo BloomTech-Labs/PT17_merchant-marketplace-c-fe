@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { Badge } from 'antd';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Button } from '../../common';
 import './mainNavBar.css';
 import { useOktaAuth } from '@okta/okta-react';
