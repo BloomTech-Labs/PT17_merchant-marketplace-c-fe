@@ -2,32 +2,22 @@ import { useOktaAuth } from '@okta/okta-react/src/OktaContext';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'antd';
 import { connect } from 'react-redux';
-import {
-  fetchProducts,
-  fetchCategories,
-  fetchTags,
-} from '../../../../state/actions';
+import { fetchProducts, fetchCategories } from '../../../../state/actions';
 import { Link } from 'react-router-dom';
 
 import NavBar from '../../../common/navBar';
 import SearchResults from './searchResults';
 import useSearch from '../../../common/customHooks/useSearch';
 
-function CurrentInventory({
-  state,
-  inventory,
-  fetchProducts,
-  fetchCategories,
-  getProductsStatus,
-  getCategoriesStatus,
-}) {
+function CurrentInventory({ inventory, fetchProducts, fetchCategories }) {
   const [searchData, setSearchData] = useState({});
   const { authState } = useOktaAuth();
 
   useEffect(() => {
     fetchProducts(authState);
     fetchCategories(authState);
-  }, []);
+    // eslint-disable-next-line
+  }, [authState]);
 
   const displayedData = useSearch(inventory, 'item_name', searchData);
 

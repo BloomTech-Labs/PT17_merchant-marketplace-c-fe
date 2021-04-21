@@ -17,6 +17,7 @@ const ProductInfo = ({ item }) => {
   const [img, setImg] = useState('');
   const [sellerProfile, setSellerProfile] = useState({});
   const [categories, setCategories] = useState([]);
+  // eslint-disable-next-line
   const [tags, setTags] = useState([]);
   const { authState } = useOktaAuth();
   const [updateToggle, setUpdateToggle] = useState(false);
@@ -67,6 +68,7 @@ const ProductInfo = ({ item }) => {
       'Category get fail in ItemCard'
     );
     getElement(item.id, 'tag/item/', setTags, 'Tag get fail in ItemCard');
+    // eslint-disable-next-line
   }, []);
 
   //-------------Edit Item---------------

@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import FormButton from '../../../common/FormButton/FormButton';
-import { Upload, message } from 'antd';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import uploadcare from 'uploadcare-widget';
 import { addItemImage } from '../../../../state/actions';
-import { useOktaAuth } from '@okta/okta-react';
 import { Spin } from 'antd';
 
 function AddPhotos({ setProgress, slider, setPhotos, photos }) {
-  const { authState } = useOktaAuth();
   const [loading, setLoading] = useState(false);
 
   function openUploadDialog(e) {
@@ -45,7 +41,7 @@ function AddPhotos({ setProgress, slider, setPhotos, photos }) {
       )}
       {photos && (
         <div className="newImg">
-          <img src={photos} />
+          <img src={photos} alt="product" />
         </div>
       )}
 

@@ -1,6 +1,6 @@
 import { useOktaAuth } from '@okta/okta-react';
 import React, { useState, useEffect } from 'react';
-import { Rate, Avatar, Tag } from 'antd';
+import { Avatar } from 'antd';
 import {
   GlobalOutlined,
   MinusCircleOutlined,
@@ -24,13 +24,14 @@ const NewItemInfo = ({ photos, mainInfo, categoryInfo }) => {
   };
   useEffect(() => {
     getSellerProfile(seller_profile_id);
+    // eslint-disable-next-line
   }, []);
   let dollars = mainInfo.price_in_cents / 100;
   return (
     <div className="product-page">
       <div className="product-container-newitem">
         <div>
-          <img src={photos} />
+          <img src={photos} alt="products" />
         </div>
 
         <div className="newitem">

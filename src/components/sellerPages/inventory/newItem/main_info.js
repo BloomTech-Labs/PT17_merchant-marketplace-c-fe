@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { Form, Input, Cascader, InputNumber, Checkbox, Select } from 'antd';
+import React from 'react';
+import { Form, Input, InputNumber, Checkbox } from 'antd';
 import FormButton from '../../../common/FormButton/FormButton';
 import '../inventoryStyles.css';
-const { Option } = Select;
 
 function NewItem({ setProgress, slider, setData }) {
   const [form] = Form.useForm();
@@ -64,6 +63,25 @@ function NewItem({ setProgress, slider, setData }) {
             defaultValue={0}
             onChange={onFinish}
           />
+        </Form.Item>
+
+        {/*===============Pickup & Deliver================= */}
+        <Form.Item
+          label="Pickup"
+          name="pickup"
+          valuePropName="checked"
+          initialValue={false}
+        >
+          <Checkbox></Checkbox>
+        </Form.Item>
+
+        <Form.Item
+          label="Delivery"
+          name="delivery"
+          valuePropName="checked"
+          initialValue={false}
+        >
+          <Checkbox></Checkbox>
         </Form.Item>
         {/*===============Published================= */}
         <Form.Item
