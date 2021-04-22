@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 import { fetchMyInfo, editMyInfo } from '../../../../../state/actions';
 import { useOktaAuth } from '@okta/okta-react';
 
-function MyInfo(props) {
+function MyInfo({ fetchMyInfo, ...props }) {
   const history = useHistory();
   const { authState } = useOktaAuth();
 
   useEffect(() => {
-    props.fetchMyInfo(authState);
-  }, []);
+    fetchMyInfo(authState);
+  }, [fetchMyInfo, authState]);
 
   function clicked(event) {
     history.push('/myprofile/editinfo');

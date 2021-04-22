@@ -6,8 +6,13 @@ import BrowserBar from '../../common/browserBar';
 import Shoes from '../../images/shoes.jpg';
 import Plates from '../../images/plates.jpg';
 import Cheese from '../../images/cheese.jpg';
+import { useOktaAuth } from '@okta/okta-react';
 
 const Landing = () => {
+  const okta = useOktaAuth();
+  console.log({ okta }, { user: okta.authService.getUser() });
+  console.log(JSON.parse(localStorage['okta-token-storage']));
+
   return (
     <div>
       <MainNavBar />

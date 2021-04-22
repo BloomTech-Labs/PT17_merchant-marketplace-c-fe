@@ -83,8 +83,7 @@ function MoreInfo({ setData, setProgress, slider }) {
   };
   useEffect(() => {
     dispatch(fetchCategories(authState));
-    console.log('Redux category fetchCategories state: ', categories);
-  }, [catState]);
+  }, [catState, authState, dispatch]);
 
   const handleCancel = () => {
     setVisible(false);

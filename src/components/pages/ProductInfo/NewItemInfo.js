@@ -1,5 +1,5 @@
 import { useOktaAuth } from '@okta/okta-react';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Avatar } from 'antd';
 import {
   GlobalOutlined,
@@ -10,21 +10,38 @@ import { getDSData } from '../../../api';
 
 const NewItemInfo = ({ photos, mainInfo, categoryInfo }) => {
   const [sellerProfile, setSellerProfile] = useState({});
-  const { authState } = useOktaAuth();
-  let oktaStore = JSON.parse(localStorage['okta-token-storage']);
-  let seller_profile_id = oktaStore.idToken.claims.sub;
+  const { authState, authService } = useOktaAuth();
+
+  const [sellerID, setSellerID] = useState();
+  useEffect(() => {
+    authService
+      .getUser()
+      .then(res => {
+        setSellerID(res.sub);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, [authService]);
 
   //<----------------Get Seller Profile---------------->
-  const getSellerProfile = id => {
-    getDSData(`${process.env.REACT_APP_API_URI}profile/${id}`, authState)
-      .then(res => setSellerProfile(res))
-      .catch(err => {
-        console.log('Seller Name get fail in ItemCard');
-      });
-  };
+  const getSellerProfile = useCallback(
+    id => {
+      getDSData(`${process.env.REACT_APP_API_URI}profile/${id}`, authState)
+        .then(res => setSellerProfile(res))
+        .catch(err => {
+          console.log('Seller Name get fail in ItemCard', { err });
+        });
+    },
+    [authState]
+  );
+
   useEffect(() => {
-    getSellerProfile(seller_profile_id);
-  }, []);
+    if (sellerID) {
+      getSellerProfile(sellerID);
+    }
+  }, [getSellerProfile, sellerID]);
+
   let dollars = mainInfo.price_in_cents / 100;
   return (
     <div className="product-page">
