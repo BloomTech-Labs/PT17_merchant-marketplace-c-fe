@@ -27,7 +27,7 @@
     "build": "craco build",
     "test": "craco test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject",
-    "prettier": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
+    "prettier": "prettier --write start\"**/*.+(js|jsx|json|css|md)\"",
     "coverage": "npm test -- --coverage --watchAll=false",
     "lint": "eslint 'src/**/*.{js,jsx}' --fix",
     "format": "prettier --write 'src/**/*.{js,jsx,css,scss}'",
