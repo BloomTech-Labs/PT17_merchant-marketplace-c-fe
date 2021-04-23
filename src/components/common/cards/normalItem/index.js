@@ -1,5 +1,5 @@
 import { useOktaAuth } from '@okta/okta-react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { getDSData } from '../../../../api';
 import './itemCardStyles.css';
 import { Skeleton, Col } from 'antd';
@@ -18,30 +18,39 @@ function ItemCard({
   const [img, setImg] = useState('');
   const { authState } = useOktaAuth();
   const [categories, setCategories] = useState([]);
-  const [setTags] = useState([]);
   const [loading, setLoading] = useState(false);
   let dollars = price / 100;
 
   //<----------------Get Element---------------->
-  const getElement = (id, url, setState, errMessage) => {
-    getDSData(`${process.env.REACT_APP_API_URI}${url}${id}`, authState)
-      .then(res => setState(res))
-      .catch(err => {
-        console.log(errMessage);
-      });
-  };
+  const getElement = useCallback(
+    (id, url, setState, errMessage) => {
+      getDSData(`${process.env.REACT_APP_API_URI}${url}${id}`, authState)
+        .then(res => {
+          setState(res);
+        })
+        .catch(err => {
+          console.log(errMessage, { err });
+        });
+    },
+    [authState]
+  );
+
   //<----------------Get Image---------------->
-  const imgGet = id => {
-    setLoading(true);
-    getDSData(`${process.env.REACT_APP_API_URI}photo/${id}`, authState)
-      .then(res => {
-        setLoading(false);
-        setImg(res[0]['url']);
-      })
-      .catch(err => {
-        console.log('Img get fail in ItemCard');
-      });
-  };
+  const imgGet = useCallback(
+    id => {
+      setLoading(true);
+      getDSData(`${process.env.REACT_APP_API_URI}photo/${id}`, authState)
+        .then(res => {
+          setLoading(false);
+          setImg(res[0]['url']);
+        })
+        .catch(err => {
+          console.log('Img get fail in ItemCard', { err });
+        });
+    },
+    [authState]
+  );
+
   useEffect(() => {
     imgGet(image);
     getElement(
@@ -50,9 +59,7 @@ function ItemCard({
       setCategories,
       'Category get fail in ItemCard'
     );
-    getElement(image, 'tag/item/', setTags, 'Tag get fail in ItemCard');
-    // eslint-disable-next-line
-  }, []);
+  }, [imgGet, getElement, image]);
 
   return (
     <Col span={30}>
@@ -92,11 +99,12 @@ function ItemCard({
           <div className="categories-tags">
             <div className="category-tag ">
               <h3>Categories: </h3>
-              {categories.map(category => (
-                <p className="category" key={category.id}>
-                  {category.category_name}
-                </p>
-              ))}
+              {categories?.length &&
+                categories.map(category => (
+                  <p className="category" key={category.id}>
+                    {category.category_name}
+                  </p>
+                ))}
             </div>
           </div>
         </div>

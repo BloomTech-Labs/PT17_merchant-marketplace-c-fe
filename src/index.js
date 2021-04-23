@@ -21,8 +21,8 @@ import thunk from 'redux-thunk';
 import Landing from './components/pages/Landing/Landing';
 
 // Seller Imports
-/* import SellerProfile from './components/sellerPages/profile';
- */ import Inventory from './components/sellerPages/inventory';
+import SellerProfile from './components/sellerPages/profile/dashboard/myInfoSection';
+import Inventory from './components/sellerPages/inventory';
 import CurrentInventory from './components/sellerPages/inventory/current';
 import EditInfo from './components/sellerPages/profile/dashboard/edit/EditInfo.js';
 import { ProductPage } from './components/pages/ProductPage';
@@ -69,6 +69,7 @@ function App() {
           path="/myprofile/inventory/additem"
           component={Inventory}
         />
+        <SecureRoute exact path="/myprofile/myinfo" component={SellerProfile} />
         <SecureRoute exact path="/myprofile/editinfo" component={EditInfo} />
         <SecureRoute
           exact
