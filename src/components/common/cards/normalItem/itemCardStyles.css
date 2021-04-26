@@ -15,11 +15,14 @@
     align-items: center;
     justify-content: space-between;
 }
+.img-frame {
+    display: block;
+}
 .cardImage{
-    width: 150px;
-    height: 120px;
     border-radius: 6px;
-    object-fit: contain;
+    height: 125px;
+    width: 125px;
+    padding-right: 2%;
 }
 .cardDesc{
     width: 25%;

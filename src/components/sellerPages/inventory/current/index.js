@@ -16,7 +16,8 @@ function CurrentInventory({ inventory, fetchProducts, fetchCategories }) {
   useEffect(() => {
     fetchProducts(authState);
     fetchCategories(authState);
-  });
+    // eslint-disable-next-line
+  }, [authState]);
 
   const displayedData = useSearch(inventory, 'item_name', searchData);
 
@@ -28,6 +29,9 @@ function CurrentInventory({ inventory, fetchProducts, fetchCategories }) {
           <SearchResults data={displayedData} filter={searchData} />
           <Link to="/myprofile/inventory/additem">
             <Button>+Add Item</Button>
+          </Link>
+          <Link to="/myprofile/editinfo">
+            <Button>Edit Info</Button>
           </Link>
         </div>
       </div>

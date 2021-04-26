@@ -2,10 +2,8 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import './navStyles.css';
 import SearchBar from '../searchbar';
-import { useOktaAuth } from '@okta/okta-react';
 
 function NavBar({ searchVisible, data, setData }) {
-  const { authState, authService } = useOktaAuth();
   return (
     <div className="nav-container">
       <div className="nav">

@@ -2,7 +2,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import React, { useEffect, useState } from 'react';
 import { getDSData } from '../../../api';
 import ProductCarousel from '../ProductPage/ProductCarousel';
-import { Rate, Avatar, Tag, Button } from 'antd';
+import { Rate, Avatar, Button } from 'antd';
 import {
   GlobalOutlined,
   MinusCircleOutlined,
@@ -17,7 +17,6 @@ const ProductInfo = ({ item }) => {
   const [img, setImg] = useState('');
   const [sellerProfile, setSellerProfile] = useState({});
   const [categories, setCategories] = useState([]);
-  const [tags, setTags] = useState([]);
   const { authState } = useOktaAuth();
   const [updateToggle, setUpdateToggle] = useState(false);
   const editProductState = useSelector(
@@ -66,7 +65,6 @@ const ProductInfo = ({ item }) => {
       setCategories,
       'Category get fail in ItemCard'
     );
-    getElement(item.id, 'tag/item/', setTags, 'Tag get fail in ItemCard');
   }, []);
 
   //-------------Edit Item---------------
@@ -140,17 +138,6 @@ const ProductInfo = ({ item }) => {
               <p>Location: {sellerProfile.physical_address}</p>
               <section>
                 <p>{updatedProduct.description}</p>
-                {updatedProduct.pickup !== false ? (
-                  <p style={{ color: 'green' }}>Available for Pickup</p>
-                ) : (
-                  <p style={{ color: 'red' }}></p>
-                )}
-
-                {updatedProduct.delivery !== false ? (
-                  <p style={{ color: 'green' }}>Available for Delivery</p>
-                ) : (
-                  <p style={{ color: 'red' }}></p>
-                )}
                 {updatedProduct.quantity_available !== 0 ? (
                   <h2 style={{ color: 'green' }}>
                     QTY: {updatedProduct.quantity_available}

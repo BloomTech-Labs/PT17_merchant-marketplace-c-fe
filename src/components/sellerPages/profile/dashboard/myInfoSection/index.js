@@ -12,6 +12,7 @@ function MyInfo(props) {
 
   useEffect(() => {
     props.fetchMyInfo(authState);
+    // eslint-disable-next-line
   }, []);
 
   function clicked(event) {

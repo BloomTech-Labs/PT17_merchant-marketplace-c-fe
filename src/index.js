@@ -21,11 +21,10 @@ import thunk from 'redux-thunk';
 import Landing from './components/pages/Landing/Landing';
 
 // Seller Imports
-import SellerProfile from './components/sellerPages/profile';
+import SellerProfile from './components/sellerPages/profile/dashboard/myInfoSection';
 import Inventory from './components/sellerPages/inventory';
-import MyInfo from './components/sellerPages/profile/dashboard/myInfoSection/index.js';
-import EditInfo from './components/sellerPages/profile/dashboard/edit/EditInfo.js';
 import CurrentInventory from './components/sellerPages/inventory/current';
+import EditInfo from './components/sellerPages/profile/dashboard/edit/EditInfo.js';
 import { ProductPage } from './components/pages/ProductPage';
 import { TestItemImageUpload } from './components/common';
 
@@ -60,7 +59,6 @@ function App() {
         <Route path="/implicit/callback" component={LoginCallback} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <Route exact path="/" component={Landing} />
-        <SecureRoute exact path="/myprofile" component={SellerProfile} />
         <SecureRoute
           exact
           path="/myprofile/inventory"
@@ -71,7 +69,7 @@ function App() {
           path="/myprofile/inventory/additem"
           component={Inventory}
         />
-        <SecureRoute exact path="/myprofile/myinfo" component={MyInfo} />
+        <SecureRoute exact path="/myprofile/myinfo" component={SellerProfile} />
         <SecureRoute exact path="/myprofile/editinfo" component={EditInfo} />
         <SecureRoute
           exact
