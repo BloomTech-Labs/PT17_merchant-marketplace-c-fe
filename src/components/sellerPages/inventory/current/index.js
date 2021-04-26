@@ -16,7 +16,7 @@ function CurrentInventory({ inventory, fetchProducts, fetchCategories }) {
   useEffect(() => {
     fetchProducts(authState);
     fetchCategories(authState);
-  }, [authState]);
+  });
 
   const displayedData = useSearch(inventory, 'item_name', searchData);
 

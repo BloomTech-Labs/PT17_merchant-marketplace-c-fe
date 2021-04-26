@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchMyInfo, editMyInfo } from '../../../../../state/actions';
 import { useOktaAuth } from '@okta/okta-react';
 import NavBar from '../../../../common/navBar';
+import './EditInfo.css';
 
 function EditInfo(props) {
   const history = useHistory();
@@ -43,52 +44,57 @@ function EditInfo(props) {
       <NavBar />
       <br />
       <br />
-      <label>
-        Name
-        <input
-          name="seller_name"
-          value={sellerForm.seller_name}
-          onChange={editForm}
-        ></input>
-      </label>
-      <br />
-      <label>
-        Address
-        <input
-          name="physical_address"
-          value={sellerForm.physical_address}
-          onChange={editForm}
-        ></input>
-      </label>
-      <br />
-      <label>
-        PhoneNumber
-        <input
-          name="phone_number"
-          value={sellerForm.phone_number}
-          onChange={editForm}
-        ></input>
-      </label>
-      <br />
-      <label>
-        Email
-        <input
-          name="email_address"
-          value={sellerForm.email_address}
-          onChange={editForm}
-        ></input>
-      </label>
-      <br />
-      <label>
-        Description
-        <input
-          name="description"
-          value={sellerForm.description}
-          onChange={editForm}
-        ></input>
-      </label>
-      <button onClick={submitEdit}>submit</button>
-      <button onClick={cancelEdit}>cancel</button>
+      <div className="editInfo">
+        <label>
+          Name
+          <br />
+          <input
+            name="seller_name"
+            value={sellerForm.seller_name}
+            onChange={editForm}
+          ></input>
+        </label>
+        <label>
+          Address
+          <br />
+          <input
+            name="physical_address"
+            value={sellerForm.physical_address}
+            onChange={editForm}
+          ></input>
+        </label>
+        <label>
+          Phone Number
+          <br />
+          <input
+            name="phone_number"
+            value={sellerForm.phone_number}
+            onChange={editForm}
+          ></input>
+        </label>
+        <label>
+          Email
+          <br />
+          <input
+            name="email_address"
+            value={sellerForm.email_address}
+            onChange={editForm}
+          ></input>
+        </label>
+        <label>
+          Description
+          <br />
+          <input
+            name="description"
+            value={sellerForm.description}
+            onChange={editForm}
+          ></input>
+        </label>
+        <div className="buttons">
+          <button onClick={submitEdit}>submit</button>
+          <button onClick={cancelEdit}>cancel</button>
+        </div>
+      </div>
     </>
   );
 }
