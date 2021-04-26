@@ -55,14 +55,6 @@ function SearchBar({ searchVisible, setData }) {
           initialValue=""
         />
         <div>
-          <Select defaultValue="Sort By" onChange={sortChange}>
-            <Option value="cat">Category</Option>
-          </Select>
-          <Select defaultValue="Category" onChange={categoryChange}>
-            <Option value="candy">Candy</Option>
-          </Select>
-        </div>
-        <div>
           <Link to="/myprofile/inventory/additem">
             <Button className="add-item-button">+ Add Item</Button>
           </Link>
