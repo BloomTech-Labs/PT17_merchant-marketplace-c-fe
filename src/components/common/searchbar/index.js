@@ -7,8 +7,6 @@ function SearchBar({ searchVisible, setData }) {
   const { Search } = Input;
   const { Option } = Select;
 
-  console.log('SearchBar', setData);
-
   function onSearch(values) {
     setData(values);
   }
