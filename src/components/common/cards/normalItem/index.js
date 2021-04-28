@@ -74,25 +74,25 @@ function ItemCard({
         <div className="cardInfo">
           <div className="cardDesc">
             <h2 className="descText">{name}</h2>
-            <p className="descText" activeStyle={{ color: 'black' }}>
+            <p className="descText" style={{ color: 'black' }}>
               {description}
             </p>
 
             <p style={{ color: 'black' }}>
               Pickup:{' '}
               {pickup !== false ? (
-                <p style={{ color: 'green' }}>Yes</p>
+                <span style={{ color: 'green' }}>Yes</span>
               ) : (
-                <p style={{ color: 'red' }}> No</p>
+                <span style={{ color: 'red' }}> No</span>
               )}
             </p>
 
             <p style={{ color: 'black' }}>
               Delivery:
               {delivery !== false ? (
-                <p style={{ color: 'green' }}>Yes</p>
+                <span style={{ color: 'green' }}>Yes</span>
               ) : (
-                <p style={{ color: 'red' }}>No</p>
+                <span style={{ color: 'red' }}>No</span>
               )}
             </p>
           </div>
@@ -117,9 +117,9 @@ function ItemCard({
           <p style={{ color: 'black' }}>
             QTY:
             {count !== 0 ? (
-              <h2 style={{ color: 'green' }}>{count}</h2>
+              <strong style={{ color: 'green' }}>{count}</strong>
             ) : (
-              <h2 style={{ color: 'red' }}>{count}</h2>
+              <strong style={{ color: 'red' }}>{count}</strong>
             )}
           </p>
 
