@@ -4,6 +4,7 @@ import NavBar from '../../../../common/navBar';
 import { connect } from 'react-redux';
 import { fetchMyInfo, editMyInfo } from '../../../../../state/actions';
 import { useOktaAuth } from '@okta/okta-react';
+import './myInfoSection.css';
 
 function MyInfo(props) {
   const history = useHistory();
@@ -23,15 +24,22 @@ function MyInfo(props) {
       <NavBar />
       <br />
       <br />
-      <div>
-        <h3>Name:{props.myInfo.seller_name}</h3>
-        <h3>Address:{props.myInfo.physical_address}</h3>
-        <h3>Phone Number:{props.myInfo.phone_number}</h3>
-        <h3>Email:{props.myInfo.email_address}</h3>
-        <h3>Description:{props.myInfo.description}</h3>
-      </div>
+      <div className="userInfo">
+        <div>
+          <h3 className="label">Name: </h3>
+          <h3>{props.myInfo.seller_name}</h3>
+          <h3 className="label">Address: </h3>
+          <h3>{props.myInfo.physical_address}</h3>
+          <h3 className="label">Phone Number: </h3>
+          <h3>{props.myInfo.phone_number}</h3>
+          <h3 className="label">Email: </h3>
+          <h3>{props.myInfo.email_address}</h3>
+          <h3 className="label">Description: </h3>
+          <h3>{props.myInfo.description}</h3>
+        </div>
 
-      <button onClick={clicked}>Edit</button>
+        <button onClick={clicked}>Edit</button>
+      </div>
     </>
   );
 }
