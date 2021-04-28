@@ -6,7 +6,7 @@
     justify-content: space-between;
     padding: 5px;
     margin: 10px 0 10px 0;
-   
+
 }
 .cardInfo{
     display: flex;
@@ -15,14 +15,17 @@
     align-items: center;
     justify-content: space-between;
 }
+.img-frame {
+    display: block;
+}
 .cardImage{
-    width: 150px;
-    height: 120px;
     border-radius: 6px;
-    object-fit: contain;
+    height: 125px;
+    width: 125px;
+    padding-right: 2%;
 }
 .cardDesc{
-    width: 25%;
+    width: 60%;
     max-width: 120px;
     overflow-y: hidden;
     max-width: 400px;
@@ -45,13 +48,14 @@
 }
 .categories-tags{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    margin-left: -20%;
 
 }
 .category-tag{
     display: flex;
     flex-direction: column;
-    
+
 }
 .category-tag h3{
     color: rgb(69, 108, 192);
@@ -67,5 +71,5 @@
 }
 .skeleton-img{
      margin-right: 2rem;
-      margin-top: 3rem; 
+      margin-top: 3rem;
 }

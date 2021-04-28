@@ -29,6 +29,9 @@ function CurrentInventory({ inventory, fetchProducts, fetchCategories }) {
           <Link to="/myprofile/inventory/additem">
             <Button>+Add Item</Button>
           </Link>
+          <Link to="/myprofile/editinfo">
+            <Button>Edit Info</Button>
+          </Link>
         </div>
       </div>
     </>

@@ -4,7 +4,6 @@ import './navStyles.css';
 import SearchBar from '../searchbar';
 
 function NavBar({ searchVisible, data, setData }) {
-  console.log('NavBar', setData);
   return (
     <div className="nav-container">
       <div className="nav">
