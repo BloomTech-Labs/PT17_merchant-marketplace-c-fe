@@ -2,7 +2,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import React, { useEffect, useState, useCallback } from 'react';
 import { getDSData } from '../../../../api';
 import './itemCardStyles.css';
-import { Skeleton, Col } from 'antd';
+import { Skeleton } from 'antd';
 import { MinusCircleOutlined, CheckCircleOutlined } from '@ant-design/icons';
 
 function ItemCard({
@@ -62,8 +62,8 @@ function ItemCard({
   }, [imgGet, getElement, image]);
 
   return (
-    <Col span={30}>
-      <div className="cardContainer">
+    <div className="cardContainer">
+      <div className="cardInfo">
         <div className="img-frame">
           {loading ? (
             <Skeleton.Image active className="cardImage" />
@@ -78,24 +78,27 @@ function ItemCard({
               {description}
             </p>
 
-            {pickup !== false ? (
-              <p style={{ color: 'green' }}>Available for Pickup</p>
-            ) : (
-              <p style={{ color: 'red' }}></p>
-            )}
+            <p style={{ color: 'black' }}>
+              Pickup:{' '}
+              {pickup !== false ? (
+                <p style={{ color: 'green' }}>Yes</p>
+              ) : (
+                <p style={{ color: 'red' }}> No</p>
+              )}
+            </p>
 
-            {delivery !== false ? (
-              <p style={{ color: 'green' }}>Available for Delivery</p>
-            ) : (
-              <p style={{ color: 'red' }}></p>
-            )}
+            <p style={{ color: 'black' }}>
+              Delivery:
+              {delivery !== false ? (
+                <p style={{ color: 'green' }}>Yes</p>
+              ) : (
+                <p style={{ color: 'red' }}>No</p>
+              )}
+            </p>
           </div>
         </div>
-        <div className="cardDesc">
-          <h2 className="descText">{name}</h2>
-          <p className="descText" activeStyle={{ color: 'black' }}>
-            {description}
-          </p>
+
+        <div className="cardInfo">
           <div className="categories-tags">
             <div className="category-tag ">
               <h3>Categories: </h3>
@@ -110,12 +113,16 @@ function ItemCard({
         </div>
 
         <div>
-          <h2 className="cardPrice">${dollars}</h2>
-          {count !== 0 ? (
-            <h2 style={{ color: 'green' }}>QTY: {count}</h2>
-          ) : (
-            <h2 style={{ color: 'red' }}>QTY: {count}</h2>
-          )}
+          <h2 className="cardPrice">Cost:${dollars}</h2>
+          <p style={{ color: 'black' }}>
+            QTY:
+            {count !== 0 ? (
+              <h2 style={{ color: 'green' }}>{count}</h2>
+            ) : (
+              <h2 style={{ color: 'red' }}>{count}</h2>
+            )}
+          </p>
+
           {published ? (
             <CheckCircleOutlined style={{ fontSize: '20px', color: 'green' }} />
           ) : (
@@ -123,7 +130,7 @@ function ItemCard({
           )}
         </div>
       </div>
-    </Col>
+    </div>
   );
 }
 
