@@ -1,7 +1,7 @@
 import { useOktaAuth } from '@okta/okta-react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { getDSData } from '../../../api';
-import ProductCarousel from '../ProductPage/ProductCarousel';
+import '../ProductPage/productPage.css';
 import { Rate, Avatar, Button } from 'antd';
 import {
   GlobalOutlined,
@@ -17,7 +17,7 @@ const ProductInfo = ({ item }) => {
   const [img, setImg] = useState('');
   const [sellerProfile, setSellerProfile] = useState({});
   const [categories, setCategories] = useState([]);
-  const { authState } = useOktaAuth();
+  const { authState, authService } = useOktaAuth();
   const [updateToggle, setUpdateToggle] = useState(false);
   const editProductState = useSelector(
     state => state.editProduct.editedProduct
@@ -25,25 +25,41 @@ const ProductInfo = ({ item }) => {
   const [updatedProduct, setUpdatedProduct] = useState({});
   const history = useHistory();
   const dispatch = useDispatch();
-  let oktaStore = JSON.parse(localStorage['okta-token-storage']);
-  let seller_profile_id = oktaStore.idToken.claims.sub;
+
+  const [sellerID, setSellerID] = useState();
+  useEffect(() => {
+    authService
+      .getUser()
+      .then(res => {
+        setSellerID(res.sub);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, [authService]);
 
   //<----------------Get Element---------------->
-  const getElement = (id, url, setState, errMessage) => {
-    getDSData(`${process.env.REACT_APP_API_URI}${url}${id}`, authState)
-      .then(res => setState(res))
-      .catch(err => {
-        console.log(errMessage);
-      });
-  };
+  const getElement = useCallback(
+    (id, url, setState, errMessage) => {
+      getDSData(`${process.env.REACT_APP_API_URI}${url}${id}`, authState)
+        .then(res => setState(res))
+        .catch(err => {
+          console.log(errMessage);
+        });
+    },
+    [authState]
+  );
   //<----------------Get Image---------------->
-  const imgGet = id => {
-    getDSData(`${process.env.REACT_APP_API_URI}photo/${id}`, authState)
-      .then(res => setImg(res[0]['url']))
-      .catch(err => {
-        console.log('Img get fail in ProductInfo.');
-      });
-  };
+  const imgGet = useCallback(
+    id => {
+      getDSData(`${process.env.REACT_APP_API_URI}photo/${id}`, authState)
+        .then(res => setImg(res[0]['url']))
+        .catch(err => {
+          console.log('Img get fail in ProductInfo.');
+        });
+    },
+    [authState]
+  );
   //--------------delete product ---------------->
   const delProduct = e => {
     e.preventDefault();
@@ -52,33 +68,38 @@ const ProductInfo = ({ item }) => {
   };
 
   useEffect(() => {
-    imgGet(item.id);
-    getElement(
-      seller_profile_id,
-      'profile/',
-      setSellerProfile,
-      'Seller Name get fail in ItemCard'
-    );
-    getElement(
-      item.id,
-      'category/',
-      setCategories,
-      'Category get fail in ItemCard'
-    );
-  }, []);
+    if (sellerID) {
+      imgGet(item.id);
+      getElement(
+        sellerID,
+        'profile/',
+        setSellerProfile,
+        'Seller Name get fail in ItemCard'
+      );
+      getElement(
+        item.id,
+        'category/',
+        setCategories,
+        'Category get fail in ItemCard'
+      );
+    }
+  }, [item.id, getElement, imgGet, sellerID]);
 
   //-------------Edit Item---------------
-  const getItem = id => {
-    getDSData(`${process.env.REACT_APP_API_URI}item/${id}`, authState)
-      .then(res => setUpdatedProduct(res[0]))
-      .catch(err => {
-        console.log('Edit Product fail in ItemCard');
-      });
-  };
+  const getItem = useCallback(
+    id => {
+      getDSData(`${process.env.REACT_APP_API_URI}item/${id}`, authState)
+        .then(res => setUpdatedProduct(res[0]))
+        .catch(err => {
+          console.log('Edit Product fail in ItemCard');
+        });
+    },
+    [authState]
+  );
 
   useEffect(() => {
     getItem(item.id);
-  }, [editProductState]);
+  }, [editProductState, item.id, getItem]);
 
   const toggle = () => {
     setUpdateToggle(!updateToggle);
@@ -120,7 +141,7 @@ const ProductInfo = ({ item }) => {
 
           <div className="product-container">
             <div>
-              <img src={img} />
+              <img src={img} alt="product" />
             </div>
 
             <div className="item">
