@@ -11,13 +11,12 @@ const ProductPage = props => {
     axios
       .get(url)
       .then(res => {
-        console.log('results:');
         setItem(res.data[0]);
       })
       .catch(err => {
         console.error(err);
       });
-  }, []);
+  }, [props.match.params.id]);
 
   return (
     <div>

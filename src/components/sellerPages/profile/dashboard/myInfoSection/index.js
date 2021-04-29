@@ -6,14 +6,13 @@ import { fetchMyInfo, editMyInfo } from '../../../../../state/actions';
 import { useOktaAuth } from '@okta/okta-react';
 import './myInfoSection.css';
 
-function MyInfo(props) {
+function MyInfo({ fetchMyInfo, ...props }) {
   const history = useHistory();
   const { authState } = useOktaAuth();
 
   useEffect(() => {
-    props.fetchMyInfo(authState);
-    // eslint-disable-next-line
-  }, []);
+    fetchMyInfo(authState);
+  }, [fetchMyInfo, authState]);
 
   function clicked(event) {
     history.push('/myprofile/editinfo');

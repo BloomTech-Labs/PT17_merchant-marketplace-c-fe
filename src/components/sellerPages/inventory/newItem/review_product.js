@@ -1,5 +1,4 @@
 import React from 'react';
-import PopContent from './popContent';
 import NewItemInfo from '../../../pages/ProductInfo/NewItemInfo';
 import FormButton from '../../../common/FormButton/FormButton';
 
@@ -17,15 +16,6 @@ function Finalize({
     formCosolidate();
   };
 
-  const ShowPopContent = ({ setStatus, setProgress }) => {
-    return (
-      <PopContent
-        setProgress={setProgress}
-        setStatus={setStatus}
-        formConfirm={formConfirm}
-      />
-    );
-  };
   return (
     <div className="contents">
       <NewItemInfo

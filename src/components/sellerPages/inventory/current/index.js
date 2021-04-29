@@ -16,8 +16,7 @@ function CurrentInventory({ inventory, fetchProducts, fetchCategories }) {
   useEffect(() => {
     fetchProducts(authState);
     fetchCategories(authState);
-    // eslint-disable-next-line
-  }, [authState]);
+  }, [authState, fetchProducts, fetchCategories]);
 
   const displayedData = useSearch(inventory, 'item_name', searchData);
 

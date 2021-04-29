@@ -8,11 +8,9 @@ export default function useSearch(initialData, keyCategory, searchData) {
     } else if (searchData === '$#&unpublished') {
       output = initialData.filter(item => !item.published);
     } else {
-      initialData.map(item => {
-        output = initialData.filter(item =>
-          item[keyCategory].toLowerCase().includes(searchData.toLowerCase())
-        );
-      });
+      output = initialData.filter(item =>
+        item[keyCategory].toLowerCase().includes(searchData.toLowerCase())
+      );
     }
 
     return output;

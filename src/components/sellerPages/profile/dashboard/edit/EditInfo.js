@@ -6,7 +6,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import NavBar from '../../../../common/navBar';
 import './EditInfo.css';
 
-function EditInfo(props) {
+function EditInfo({ fetchMyInfo, ...props }) {
   const history = useHistory();
   const { authState } = useOktaAuth();
   const [sellerForm, setSellerForm] = useState({
@@ -19,8 +19,8 @@ function EditInfo(props) {
   });
 
   useEffect(() => {
-    props.fetchMyInfo(authState);
-  }, []);
+    fetchMyInfo(authState);
+  }, [authState, fetchMyInfo]);
 
   function editForm(e) {
     console.log('sellerform', sellerForm);

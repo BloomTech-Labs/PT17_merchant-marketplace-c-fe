@@ -6,20 +6,16 @@ import axios from 'axios';
 import ItemCard from '../../common/cards/normalItem';
 import { NavLink } from 'react-router-dom';
 
-
 const Landing = () => {
   const [searchTerm, setSearchTerm] = useState();
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    console.log('searchTerm', searchTerm);
     if (searchTerm) {
       const url = `${process.env.REACT_APP_API_URI}item/?q=${searchTerm.name}`;
-      console.log(url);
       axios
         .get(url)
         .then(res => {
-          console.log('results:', { res });
           setSearchResults(res.data.items);
         })
         .catch(err => {
@@ -56,13 +52,6 @@ const Landing = () => {
           </NavLink>
         );
       })}
-      {/* <h1 className="title-2">Top rate merchants</h1>
-      <section className="top-rated">
-        <div className="top-img">1</div>
-        <div className="top-img">2</div>
-        <div className="top-img">3</div>
-      </section> */}
-
     </div>
   );
 };
